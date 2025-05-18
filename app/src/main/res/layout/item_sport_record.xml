@@ -1,30 +1,58 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="12dp"
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:elevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="16dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@android:color/darker_gray">
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:textStyle="bold"
-        android:textSize="16sp"
+    <!-- Internal padding added here -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Název výkonu"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="?android:textColorPrimary" />
 
-    <TextView
-        android:id="@+id/textDuration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Místo konání"
+            android:textColor="?android:textColorSecondary"
+            android:layout_marginTop="4dp" />
 
-    <TextView
-        android:id="@+id/textSource"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/textDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30 minut"
+            android:textColor="?android:textColorSecondary"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/textSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lokální DB"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:textColor="@color/design_default_color_secondary"
+            android:layout_marginTop="6dp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

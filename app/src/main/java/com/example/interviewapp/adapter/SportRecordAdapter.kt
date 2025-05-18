@@ -29,7 +29,7 @@ class SportRecordAdapter(private val records: List<SportRecord>) :
         val record = records[position]
         holder.title.text = record.title
         holder.location.text = record.location
-        holder.duration.text = "${record.durationMinutes} min"
+        holder.duration.text = "${record.durationMinutes} minut"
         holder.source.text = when (record.source) {
             RecordSource.LOCAL -> "Lokální DB"
             RecordSource.REMOTE -> "Backend"

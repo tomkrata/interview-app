@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:padding="16dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:strokeColor="@android:color/transparent"
+        android:elevation="4dp"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTextTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Název výkonu" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTextLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Místo konání"
-            android:layout_marginTop="8dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Název výkonu">
 
-        <EditText
-            android:id="@+id/editTextDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Délka trvání (minuty)"
-            android:inputType="number"
-            android:layout_marginTop="8dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/radioGroupStorage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Místo konání"
+                android:layout_marginTop="12dp">
 
-            <RadioButton
-                android:id="@+id/radioLocal"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Délka trvání (minuty)"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupStorage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lokální DB" />
+                android:layout_marginTop="16dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
-            <RadioButton
-                android:id="@+id/radioRemote"
-                android:layout_width="wrap_content"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/radioLocal"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lokální DB"
+                    android:checked="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/radioRemote"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Backend" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Backend" />
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Uložit výkon"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+                android:text="Uložit výkon"
+                android:layout_marginTop="24dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </ScrollView>

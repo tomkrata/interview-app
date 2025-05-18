@@ -11,6 +11,7 @@ import com.example.interviewapp.R
 import com.example.interviewapp.config.AppDatabase
 import com.example.interviewapp.entity.RecordSource
 import com.example.interviewapp.entity.SportRecord
+import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
@@ -27,12 +28,11 @@ class AddRecordActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val chipLocal = findViewById<Chip>(R.id.radioLocal)
+        val chipRemote = findViewById<Chip>(R.id.radioRemote)
         val titleEditText = findViewById<EditText>(R.id.editTextTitle)
         val locationEditText = findViewById<EditText>(R.id.editTextLocation)
         val durationEditText = findViewById<EditText>(R.id.editTextDuration)
-        val radioLocal = findViewById<RadioButton>(R.id.radioLocal)
-        val radioRemote = findViewById<RadioButton>(R.id.radioRemote)
         val buttonSave = findViewById<Button>(R.id.buttonSave)
 
         buttonSave.setOnClickListener {
@@ -51,7 +51,7 @@ class AddRecordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (radioLocal.isChecked) {
+            if (chipLocal.isChecked) {
                 // ✅ Save to local Room DB
                 val record = SportRecord(
                     title = title,
@@ -68,7 +68,7 @@ class AddRecordActivity : AppCompatActivity() {
                     Toast.makeText(this@AddRecordActivity, "Uloženo do lokální DB", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-            } else if (radioRemote.isChecked) {
+            } else if (chipRemote.isChecked) {
                 // ✅ Save to Firestore
                 val recordMap = mapOf(
                     "title" to title,

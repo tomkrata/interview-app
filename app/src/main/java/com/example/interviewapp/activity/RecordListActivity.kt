@@ -17,6 +17,8 @@ import com.example.interviewapp.adapter.SportRecordAdapter
 import com.example.interviewapp.config.AppDatabase
 import com.example.interviewapp.entity.RecordSource
 import com.example.interviewapp.entity.SportRecord
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -24,7 +26,10 @@ import kotlinx.coroutines.launch
 class RecordListActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var spinner: Spinner
+    private lateinit var chipGroup: ChipGroup
+    private lateinit var chipAll: Chip
+    private lateinit var chipLocal: Chip
+    private lateinit var chipRemote: Chip
     private lateinit var fabAdd: FloatingActionButton
 
     private val firestore by lazy { FirebaseFirestore.getInstance() }
@@ -44,18 +49,22 @@ class RecordListActivity : AppCompatActivity() {
         }
 
         recyclerView = findViewById(R.id.recyclerViewRecords)
-        spinner = findViewById(R.id.spinnerFilter)
+        chipGroup = findViewById(R.id.chipGroupFilter)
+        chipAll = findViewById(R.id.chipAll)
+        chipLocal = findViewById(R.id.chipLocal)
+        chipRemote = findViewById(R.id.chipRemote)
+
+        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.chipLocal -> updateList(1)
+                R.id.chipRemote -> updateList(2)
+                else -> updateList(0)
+            }
+        }
         fabAdd = findViewById(R.id.fabAdd)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                updateList(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
 
         fabAdd.setOnClickListener {
             startActivity(Intent(this, AddRecordActivity::class.java))
@@ -78,7 +87,7 @@ class RecordListActivity : AppCompatActivity() {
             localRecords = dao.getAll().map {
                 SportRecord(it.id, it.title, it.location, it.durationMinutes, RecordSource.LOCAL)
             }
-            updateList(spinner.selectedItemPosition)
+            updateList(getSelectedFilter())
         }
     }
 
@@ -92,11 +101,11 @@ class RecordListActivity : AppCompatActivity() {
                     val duration = doc.getLong("durationMinutes")?.toInt() ?: return@mapNotNull null
                     SportRecord(doc.id.hashCode(), title, location, duration, RecordSource.REMOTE)
                 }
-                updateList(spinner.selectedItemPosition)
+                updateList(getSelectedFilter())
             }
             .addOnFailureListener {
                 remoteRecords = emptyList()
-                updateList(spinner.selectedItemPosition)
+                updateList(getSelectedFilter())
             }
     }
 
@@ -107,5 +116,14 @@ class RecordListActivity : AppCompatActivity() {
             else -> localRecords + remoteRecords
         }
         recyclerView.adapter = SportRecordAdapter(records)
+    }
+
+    private fun getSelectedFilter(): Int {
+        val checkedId = chipGroup.checkedChipId
+        return when (checkedId) {
+            R.id.chipLocal -> 1
+            R.id.chipRemote -> 2
+            else -> 0 // R.id.chipAll or none
+        }
     }
 }
