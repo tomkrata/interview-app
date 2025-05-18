@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">InterviewApp</string>
+    <string-array name="filter_options">
+        <item>Vše</item>
+        <item>Lokální DB</item>
+        <item>Backend</item>
+    </string-array>
 </resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Název výkonu" />
+
+        <EditText
+            android:id="@+id/editTextLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Místo konání"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/editTextDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Délka trvání (minuty)"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupStorage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/radioLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokální DB" />
+
+            <RadioButton
+                android:id="@+id/radioRemote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backend" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uložit výkon"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>
