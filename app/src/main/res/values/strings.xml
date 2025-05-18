@@ -3,10 +3,4 @@
     <string name="remote">Online DB</string>
     <string name="local">Lokální DB</string>
     <string name="all">Vše</string>
-    <string name="lok_ln_db">Lokální DB</string>
-    <string-array name="filter_options">
-        <item>Vše</item>
-        <item>Lokální DB</item>
-        <item>Backend</item>
-    </string-array>
 </resources>
